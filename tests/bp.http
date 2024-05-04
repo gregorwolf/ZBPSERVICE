@@ -18,6 +18,10 @@ Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
 ###
 @bpID={{readBP.response.body.$.d.results[0].Partner}}
 ###
+GET {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')
+Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
+Accept: application/json
+###
 # @name readBPAttachments
 GET {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/to_Attachments
   ?$format=json
