@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZBP_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="BPAddress" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Partner"/>
+                </Key>
+                <Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartnerGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="BP GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameOrg1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Country/Reg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="to_Attachments" Relationship="ZBP_SRV.BPtoAttachments" FromRole="FromRole_BPtoAttachments" ToRole="ToRole_BPtoAttachments"/>
+            </EntityType>
+            <EntityType Name="CountryVH" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Country"/>
+                </Key>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Country/Reg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryDescription" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Country/Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="BPAttachment" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Partner"/>
+                    <PropertyRef Name="DocId"/>
+                </Key>
+                <Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DocId" Type="Edm.String" Nullable="false" MaxLength="46" sap:unicode="false" sap:label="Folder Entry ID (Obj+Fol+Forwarder Name)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mimetype" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mimetype" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="File Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Content" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="CONTENT" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="BPtoAttachments" sap:content-version="1">
+                <End Type="ZBP_SRV.BPAddress" Multiplicity="1" Role="FromRole_BPtoAttachments"/>
+                <End Type="ZBP_SRV.BPAttachment" Multiplicity="*" Role="ToRole_BPtoAttachments"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BPtoAttachments">
+                        <PropertyRef Name="Partner"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BPtoAttachments">
+                        <PropertyRef Name="Partner"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZBP_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="BPAddressSet" EntityType="ZBP_SRV.BPAddress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CountryVHSet" EntityType="ZBP_SRV.CountryVH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BPAttachmentSet" EntityType="ZBP_SRV.BPAttachment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="BPtoAttachmentsSet" Association="ZBP_SRV.BPtoAttachments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="BPAddressSet" Role="FromRole_BPtoAttachments"/>
+                    <End EntitySet="BPAttachmentSet" Role="ToRole_BPtoAttachments"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="https://A4H.COMPUTERSERVICE-WOLF.COM:50001/sap/opu/odata/sap/ZBP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://A4H.COMPUTERSERVICE-WOLF.COM:50001/sap/opu/odata/sap/ZBP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
