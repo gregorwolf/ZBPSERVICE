@@ -28,6 +28,7 @@ GET {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/t
 Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
 ###
 @mediaSrc={{readBPAttachments.response.body.d.results[0].__metadata.media_src}}
+@uri={{readBPAttachments.response.body.d.results[0].__metadata.uri}}
 ###
 GET {{mediaSrc}}
 Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
@@ -51,3 +52,8 @@ Content-Type: image/jpeg
 Slug: Test.jpg
 
 < ./Test.jpg
+###
+DELETE  {{uri}}
+X-CSRF-Token: {{csrf}}
+Accept: application/json
+Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
