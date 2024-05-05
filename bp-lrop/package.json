@@ -26,6 +26,7 @@
   "scripts": {
     "start": "fiori run --open \"test/flpSandbox.html?sap-client=001&sap-ui-xx-viewCache=false#cswbplrop-tile\"",
     "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-client=001&sap-ui-xx-viewCache=false#cswbplrop-tile\"",
+    "start-cap": "fiori run --config ./ui5-cap.yaml --open \"test/flpSandbox.html?sap-client=001&sap-ui-xx-viewCache=false#cswbplrop-tile\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
     "lint": "eslint ./",
     "ts-typecheck": "tsc --noEmit",
