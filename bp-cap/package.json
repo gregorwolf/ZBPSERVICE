@@ -17,5 +17,10 @@
   },
   "scripts": {
     "start": "cds-serve"
+  },
+  "cds": {
+    "cov2ap": {
+      "path": "sap/opu/odata/sap"
+    }
   }
 }
