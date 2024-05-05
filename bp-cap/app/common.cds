@@ -19,3 +19,9 @@ annotate my.BPAddressSet with @(UI: {HeaderInfo: {
   Title         : {Value: NameOrg1},
   Description   : {Value: Partner}
 }, });
+
+
+annotate my.BPAttachmentSet with @(UI: {LineItem: [
+  {Value: Filename},
+  {Value: Content},
+]}) {};
