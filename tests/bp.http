@@ -31,3 +31,23 @@ Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
 ###
 GET {{mediaSrc}}
 Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
+
+### Get CSRF Token
+# @name getCSRF
+HEAD {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV
+Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
+X-CSRF-Token: Fetch
+### Read Token to Variable
+@csrf={{getCSRF.response.headers.x-csrf-token}}
+
+### Upload File
+# @name createAttachment
+POST {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/to_Attachments
+Authorization: Basic {{$dotenv username}}:{{$dotenv password}}
+X-CSRF-Token: {{csrf}}
+Accept-Language: en
+Accept: application/json
+Content-Type: image/jpeg
+Slug: Test.jpg
+
+< ./Test.jpg
