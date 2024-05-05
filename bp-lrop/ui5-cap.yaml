@@ -11,6 +11,7 @@ server:
       configuration:
         ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         ui5:
+          # version: 1.123.1
           path:
             - /resources
             - /test-resources
