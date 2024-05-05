@@ -20,9 +20,16 @@
         "uri": "/sap/opu/odata/sap/ZBP_SRV/",
         "type": "OData",
         "settings": {
-          "annotations": [],
+          "annotations": ["annotation"],
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
         }
       }
     },
@@ -110,9 +117,7 @@
         {
           "name": "RouteBusinessPartners",
           "pattern": ":?query:",
-          "target": [
-            "TargetBusinessPartners"
-          ]
+          "target": ["TargetBusinessPartners"]
         }
       ],
       "targets": {
