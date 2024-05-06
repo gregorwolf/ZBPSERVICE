@@ -118,6 +118,11 @@
           "name": "RouteBusinessPartners",
           "pattern": ":?query:",
           "target": ["TargetBusinessPartners"]
+        },
+        {
+          "name": "RouteBusinessPartnerDetail",
+          "pattern": "Details/{Partner}",
+          "target": ["TargetBusinessPartnerDetail"]
         }
       ],
       "targets": {
@@ -127,6 +132,13 @@
           "clearControlAggregation": false,
           "viewId": "BusinessPartners",
           "viewName": "BusinessPartners"
+        },
+        "TargetBusinessPartnerDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "BusinessPartnerDetail",
+          "viewName": "BusinessPartnerDetail"
         }
       }
     },

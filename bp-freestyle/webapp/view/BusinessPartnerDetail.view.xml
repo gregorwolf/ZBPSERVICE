@@ -1,0 +1,57 @@
+<mvc:View controllerName="csw.bpfreestyle.controller.BusinessPartnerDetail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>BusinessPartnerDetailTitle}">
+        <content>
+            <smartForm:SmartForm
+                id="smartForm"
+                editTogglable="true"
+                title="{Name}"
+                flexEnabled="false">
+                <smartForm:Group id="Details" title="Details">
+                    <smartForm:GroupElement id="PartnerID">
+                        <smartField:SmartField id="PartnerIDField" value="{Partner}" />
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+                <smartForm:Group id="Address" title="Address">
+                    <smartForm:GroupElement id="Country">
+                        <smartField:SmartField id="CountryField" value="{Country}" />
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+                <smartForm:Group id="AddImage" title="Add Image">
+                    <smartForm:GroupElement id="Image">
+                        <Button id="onTakePicture" icon="sap-icon://camera"
+                            press="onTakePicture"></Button>
+                        <html:input id="file" type="file" accept="image/*" capture="camera"
+                            style="visibility: hidden" />
+                        <Image width="200px" id="picPreview"></Image>
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+            </smartForm:SmartForm>
+            <Table id="to_Attachments"
+                items="{to_Attachments}"
+            >
+                <columns>
+                    <Column id="DocIdColumn">
+                        <Text id="DocIdHeader" text="DocId" />
+                    </Column>
+                    <Column id="FilenameColumn">
+                        <Text id="FilenameHeader" text="Filename" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="columnListItem">
+                        <cells>
+                            <Text id="DocId" text="{DocId}" />
+                            <Text id="Filename" text="{Filename}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

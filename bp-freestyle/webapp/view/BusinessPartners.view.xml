@@ -7,7 +7,6 @@
                 id="smartTableView"
                 xmlns="sap.m"
                 xmlns:mvc="sap.ui.core.mvc"
-                controllerName="sap.ui.demo.smartControls.SmartTable"
                 xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
                 xmlns:smartTable="sap.ui.comp.smarttable">
                 <smartFilterBar:SmartFilterBar
