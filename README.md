@@ -5,12 +5,12 @@
 - bp-cap - CAP implementation of the Business Partner OData service
 - bp-freestyle - SAPUI5 Freestyle implementation of the Business Partner Application
 - bp-lrop - SAP Fiori Elements List Report Object Page implementation of the Business Partner Application
-- src - ABAP implementation of the Business Partner OData service
+- src - ABAP implementation of the Business Partner OData service. Can be installed in an ABAP system using [abapGit](https://abapgit.org)
 - tests - REST Client tests for the Business Partner OData service
 
 ## Execute the tests
 
-create a `.env` file in the `tests` folder with the following content:
+Clone this repository to SAP Business Application Studio or a local System with VS Code and the REST Client Extension installed. Create a `.env` file in the `tests` folder with the following content:
 
 ```env
 backend_url=http://<Destination Name>.dest
