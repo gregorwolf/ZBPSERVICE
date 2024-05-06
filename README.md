@@ -1,5 +1,7 @@
 # ZBPSERVICE - Business Partner OData Service
 
+The Business Partner OData service is a simple OData service that provides a query and read functionality for SAP Business Partners. So before you can use the service, you need to have some Business Partners in your system. You can create them in the SAP GUI transaction BP. The service allows to read, add and delete GOS attachments of the Business Partner.
+
 ## Content
 
 - bp-cap - CAP implementation of the Business Partner OData service
