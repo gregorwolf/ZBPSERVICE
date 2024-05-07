@@ -1,8 +1,7 @@
 import Controller from "sap/ui/core/mvc/Controller";
 import UIComponent from "sap/ui/core/UIComponent";
-import Route$PatternMatchedEvent from "sap/ui/core/routing/Route";
+import { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import { BPAddress } from "../../gen/ZbpSrvModel";
-import Image from "sap/m/Image";
 /**
  * @namespace csw.bpfreestyle.controller
  */
@@ -33,14 +32,14 @@ export default class BusinessPartnerDetail extends Controller {
           //check if there is an image
           const file = this as HTMLInputElement;
           if (oPicPreviewID && file.files && file.files[0]) {
-            var previewPic = document.getElementById(
-              oPicPreviewID
-            ) as unknown as Image;
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            var previewPic = document.getElementById(oPicPreviewID) as any;
             var reader = new FileReader();
             reader.onload = function (e) {
               if (previewPic) {
                 if (e.target?.result !== null) {
-                  previewPic.setSrc(e.target?.result as string);
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                  previewPic.src = e.target?.result;
                   // pictureObj = e.target.result;
                 }
               }

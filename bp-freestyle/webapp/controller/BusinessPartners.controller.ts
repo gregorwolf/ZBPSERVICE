@@ -12,7 +12,7 @@ export default class BusinessPartners extends Controller {
 
   // onSelectionChange - Event handler for the selection change event of the table to navigate to the details page
   public onSelectionChange(oEvent: Event): void {
-    const oItem = oEvent.getParameter("listItem") as StandardListItem;
+    const oItem = oEvent.getParameter("listItem" as never) as StandardListItem;
     const oOC = this.getOwnerComponent() as UIComponent;
     const oRouter = oOC.getRouter();
     const objectOrUndefined = oItem
