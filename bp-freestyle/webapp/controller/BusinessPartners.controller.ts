@@ -2,6 +2,7 @@ import Controller from "sap/ui/core/mvc/Controller";
 import StandardListItem from "sap/ui/webc/main/StandardListItem";
 import Event from "sap/ui/base/Event";
 import UIComponent from "sap/ui/core/UIComponent";
+import { BPAddress } from "../../gen/ZbpSrvModel";
 /**
  * @namespace csw.bpfreestyle.controller
  */
@@ -14,7 +15,14 @@ export default class BusinessPartners extends Controller {
     const oItem = oEvent.getParameter("listItem") as StandardListItem;
     const oOC = this.getOwnerComponent() as UIComponent;
     const oRouter = oOC.getRouter();
-    const oObject = oItem.getBindingContext()?.getObject();
+    const objectOrUndefined = oItem
+      .getBindingContext()
+      ?.getObject() as BPAddress;
+    if (objectOrUndefined === undefined) {
+      // Handle the case where it's undefined, perhaps by returning early
+      return;
+    }
+    const oObject: BPAddress = objectOrUndefined;
     oRouter.navTo("RouteBusinessPartnerDetail", {
       Partner: oObject.Partner,
     });
