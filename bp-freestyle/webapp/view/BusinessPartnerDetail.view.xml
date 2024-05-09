@@ -29,6 +29,9 @@
                         <html:input id="file" type="file" accept="image/*" capture="camera"
                             style="visibility: hidden" />
                         <Image width="200px" id="picPreview"></Image>
+                        <Button id="onUploadPicture" icon="sap-icon://upload"
+                            visible="{= %{view>/onUploadPictureVisible} }"
+                            press="onUploadPicture"></Button>
                     </smartForm:GroupElement>
                 </smartForm:Group>
             </smartForm:SmartForm>
