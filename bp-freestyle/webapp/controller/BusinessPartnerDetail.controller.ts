@@ -2,12 +2,19 @@ import Controller from "sap/ui/core/mvc/Controller";
 import UIComponent from "sap/ui/core/UIComponent";
 import { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import { BPAddress } from "../../gen/ZbpSrvModel";
+import JSONModel from "sap/ui/model/json/JSONModel";
 /**
  * @namespace csw.bpfreestyle.controller
  */
 export default class BusinessPartnerDetail extends Controller {
   /*eslint-disable @typescript-eslint/no-empty-function*/
   public onInit(): void {
+    const viewSettings = {
+      onUploadPictureVisible: false,
+    };
+    const viewModel = new JSONModel(viewSettings);
+    this.getView()?.setModel(viewModel, "view");
+
     const oOC = this.getOwnerComponent() as UIComponent;
     const oRouter = oOC.getRouter();
     const route = oRouter.getRoute("RouteBusinessPartnerDetail");
@@ -23,6 +30,7 @@ export default class BusinessPartnerDetail extends Controller {
     console.log("Take Picture");
     var fileId = this.createId("file");
     var oPicPreviewID = this.createId("picPreview");
+    const viewModel = this.getView()?.getModel("view") as JSONModel;
 
     if (oPicPreviewID && fileId) {
       //trigger click event for the input field to open camera
@@ -41,6 +49,7 @@ export default class BusinessPartnerDetail extends Controller {
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                   previewPic.src = e.target?.result;
                   // pictureObj = e.target.result;
+                  viewModel.setProperty("/onUploadPictureVisible", true);
                 }
               }
             };
