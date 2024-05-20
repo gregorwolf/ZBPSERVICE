@@ -52,6 +52,16 @@ Content-Type: image/jpeg
 Slug: Test.jpg
 
 < ./Test.jpg
+### Upload EICAR Test File
+POST {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/to_Attachments
+Authorization: Basic {{$dotenv username}}:{{$dotenv password}}
+X-CSRF-Token: {{csrf}}
+Accept-Language: en
+Accept: application/json
+Content-Type: text/plain
+Slug: Test.txt
+
+X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
 ###
 DELETE  {{uri}}
 X-CSRF-Token: {{csrf}}
