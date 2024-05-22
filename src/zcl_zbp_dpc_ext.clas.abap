@@ -30,7 +30,12 @@ CLASS zcl_zbp_dpc_ext DEFINITION
       IMPORTING
                 partner           TYPE bu_partner
                 addressguid       TYPE bu_address_guid_bapi
-      RETURNING VALUE(bp_address) TYPE zcl_zbp_mpc=>ts_bpaddress.
+      RETURNING VALUE(bp_address) TYPE zcl_zbp_mpc=>ts_bpaddress,
+      virus_scan
+        IMPORTING
+          iv_data TYPE xstring
+        RAISING
+          /iwbep/cx_mgw_busi_exception.
 ENDCLASS.
 
 
@@ -359,16 +364,14 @@ CLASS zcl_zbp_dpc_ext IMPLEMENTATION.
   METHOD /iwbep/if_mgw_appl_srv_runtime~create_stream.
     DATA: gs_object   TYPE sibflporb
           , value_tab TYPE solix_tab
-          , message TYPE bapi_msg
-          , message_unlimited TYPE string
           , attachment TYPE zcl_zbp_mpc=>ts_bpattachment
           , filename TYPE string
           , extension TYPE string
           , gs_doc_info TYPE sofolenti1
           , gs_objtgt   TYPE sibflporb
-    , gs_doc_data TYPE sodocchgi1
-   , gd_doc_type TYPE soodk-objtp
- ,         length    TYPE i.
+          , gs_doc_data TYPE sodocchgi1
+          , gd_doc_type TYPE soodk-objtp
+          , length    TYPE i.
 
     IF NOT it_key_tab IS INITIAL.
       READ TABLE it_key_tab ASSIGNING FIELD-SYMBOL(<fs_key>) WITH KEY name = 'Partner'.
@@ -379,58 +382,7 @@ CLASS zcl_zbp_dpc_ext IMPLEMENTATION.
             message_unlimited = 'No Partner provided'.
       ENDIF.
 
-      cl_vsi=>get_instance(
-        IMPORTING
-          eo_instance         = DATA(vsi)
-        EXCEPTIONS
-          configuration_error = 1
-          profile_not_active  = 2
-          profile_not_found   = 3
-          internal_error      = 4
-          OTHERS              = 5
-      ).
-      IF sy-subrc <> 0.
-        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-          WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO message_unlimited.
-        message = message_unlimited.
-        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
-          EXPORTING
-            message           = message
-            message_unlimited = message_unlimited.
-      ENDIF.
-
-      vsi->scan_bytes(
-        EXPORTING
-          if_data             = is_media_resource-value
-        IMPORTING
-          ef_scanrc           = DATA(scanrc)
-*          ef_data             = ef_data
-*          et_bapiret          = et_bapiret
-*          et_scanerror        = et_scanerror
-*          et_infection        = et_infection
-*          et_contentinfo      = et_contentinfo
-        EXCEPTIONS
-          not_available       = 1
-          configuration_error = 2
-          internal_error      = 3
-          OTHERS              = 4
-      ).
-      IF sy-subrc <> 0.
-        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-          WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO message_unlimited.
-        message = message_unlimited.
-        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
-          EXPORTING
-            message           = message
-            message_unlimited = message_unlimited.
-      ENDIF.
-
-      IF scanrc <> if_vscan_instance=>con_scanrc_ok.
-        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
-          EXPORTING
-            message           = 'A Virus was found'
-            message_unlimited = 'A Virus was found'.
-      ENDIF.
+      virus_scan( is_media_resource-value ).
 
       CALL FUNCTION 'CONVERSION_EXIT_ALPHA_INPUT'
         EXPORTING
@@ -504,6 +456,68 @@ CLASS zcl_zbp_dpc_ext IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
+  METHOD virus_scan.
+
+    DATA message_unlimited TYPE string.
+    DATA message TYPE bapi_msg.
+
+    cl_vsi=>get_instance(
+      IMPORTING
+        eo_instance         = DATA(vsi)
+      EXCEPTIONS
+        configuration_error = 1
+        profile_not_active  = 2
+        profile_not_found   = 3
+        internal_error      = 4
+        OTHERS              = 5
+    ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO message_unlimited.
+      message = message_unlimited.
+      RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+        EXPORTING
+          message           = message
+          message_unlimited = message_unlimited.
+    ENDIF.
+
+    vsi->scan_bytes(
+      EXPORTING
+        if_data             = iv_data
+      IMPORTING
+        ef_scanrc           = DATA(scanrc)
+*          ef_data             = ef_data
+*          et_bapiret          = et_bapiret
+*          et_scanerror        = et_scanerror
+*          et_infection        = et_infection
+*          et_contentinfo      = et_contentinfo
+      EXCEPTIONS
+        not_available       = 1
+        configuration_error = 2
+        internal_error      = 3
+        OTHERS              = 4
+    ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO message_unlimited.
+      message = message_unlimited.
+      RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+        EXPORTING
+          message           = message
+          message_unlimited = message_unlimited.
+    ENDIF.
+
+    IF scanrc <> if_vscan_instance=>con_scanrc_ok.
+      RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+        EXPORTING
+          message           = 'A Virus was found'
+          message_unlimited = 'A Virus was found'.
+    ENDIF.
+
+  ENDMETHOD.
+
+
 
   METHOD get_gos_root_folder.
     " Get Root-Folder of GOS
