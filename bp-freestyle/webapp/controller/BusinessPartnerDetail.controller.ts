@@ -25,6 +25,11 @@ export default class BusinessPartnerDetail extends Controller {
     }
   }
 
+  public onUploadPicture(): void {
+    // eslint-disable-next-line no-console
+    console.log("Upload Picture");
+  }
+
   public onTakePicture(): void {
     // eslint-disable-next-line no-console
     console.log("Take Picture");
