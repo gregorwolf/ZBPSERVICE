@@ -3,6 +3,7 @@
     xmlns:smartForm="sap.ui.comp.smartform"
     xmlns:smartField="sap.ui.comp.smartfield"
     xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:unified="sap.ui.unified"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m">
     <Page id="page" title="{i18n>BusinessPartnerDetailTitle}">
@@ -24,11 +25,17 @@
                 </smartForm:Group>
                 <smartForm:Group id="AddImage" title="Add Image">
                     <smartForm:GroupElement id="Image">
-                        <Button id="onTakePicture" icon="sap-icon://camera"
+                        <unified:FileUploader id="fileuploader" sendXHR="true" iconOnly="true" width="100%" buttonOnly="true" 
+                        icon="sap-icon://camera" 
+                        uploadUrl="/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{Partner}')/to_Attachments" 
+                        change=".onUploadChange" uploadStart=".onBeforeUploadStarts"
+                        uploadComplete=".onUploadComplete"></unified:FileUploader>
+                        <Image width="200px" id="picPreviewFileUpload" src="{view>/image}"></Image>
+                        <!-- <Button id="onTakePicture" icon="sap-icon://camera"
                             press="onTakePicture"></Button>
                         <html:input id="file" type="file" accept="image/*" capture="camera"
                             style="visibility: hidden" />
-                        <Image width="200px" id="picPreview"></Image>
+                        <Image width="200px" id="picPreview"></Image> -->
                         <Button id="onUploadPicture" icon="sap-icon://upload"
                             visible="{= %{view>/onUploadPictureVisible} }"
                             press="onUploadPicture"></Button>
