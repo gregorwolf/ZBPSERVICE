@@ -25,12 +25,15 @@
                 </smartForm:Group>
                 <smartForm:Group id="AddImage" title="Add Image">
                     <smartForm:GroupElement id="Image">
+                        <!-- fileType="jpg,png,jpeg" -->
                         <unified:FileUploader id="fileuploader" sendXHR="true" iconOnly="true" width="100%" buttonOnly="true" 
                         icon="sap-icon://camera"
-                        fileType="jpg,png,jpeg"
                         uploadUrl="/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{Partner}')/to_Attachments" 
                         change=".onUploadChange" uploadStart=".onBeforeUploadStarts"
-                        uploadComplete=".onUploadComplete"></unified:FileUploader>
+                        typeMissmatch=".handleTypeMissmatch" fileSizeExceed=".onFileSizeExceed"
+                        fileType="jpeg,jpg,png,heic"
+					    mimeType="image/jpeg,image/jpg,image/png,*/*,.heic"
+                        uploadComplete=".onUploadComplete" sameFilenameAllowed="true"></unified:FileUploader>
                         <Image width="200px" id="picPreviewFileUpload" src="{view>/image}"></Image>
                         <!-- <Button id="onTakePicture" icon="sap-icon://camera"
                             press="onTakePicture"></Button>
