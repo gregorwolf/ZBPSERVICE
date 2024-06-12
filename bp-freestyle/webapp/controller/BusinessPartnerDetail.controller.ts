@@ -5,7 +5,12 @@ import { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import { BPAddress } from "../../gen/ZbpSrvModel";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
-import FileUploader, { FileUploader$ChangeEvent, FileUploader$FileSizeExceedEvent, FileUploader$TypeMissmatchEvent, FileUploader$UploadStartEvent } from "sap/ui/unified/FileUploader";
+import FileUploader, {
+  FileUploader$ChangeEvent,
+  FileUploader$FileSizeExceedEvent,
+  FileUploader$TypeMissmatchEvent,
+  FileUploader$UploadStartEvent,
+} from "sap/ui/unified/FileUploader";
 import FileUploaderParameter from "sap/ui/unified/FileUploaderParameter";
 import MessageToast from "sap/m/MessageToast";
 /**
@@ -31,19 +36,19 @@ export default class BusinessPartnerDetail extends Controller {
   }
 
   public onUploadPicture(): void {
-    const fileuploader = (this.byId("fileuploader") as FileUploader);
+    const fileuploader = this.byId("fileuploader") as FileUploader;
 
     fileuploader.removeAllHeaderParameters();
     // fileUpload.removeHeaderParameter("x-csrf-token");
     // Header Token
     const customerHeaderToken = new FileUploaderParameter({
       name: "x-csrf-token",
-      value: (this.getView()?.getModel() as ODataModel).getSecurityToken()
+      value: (this.getView()?.getModel() as ODataModel).getSecurityToken(),
     });
     fileuploader.addHeaderParameter(customerHeaderToken);
     var customerHeaderSlug = new FileUploaderParameter({
       name: "slug",
-      value: fileuploader.getValue()
+      value: fileuploader.getValue(),
     });
     fileuploader.addHeaderParameter(customerHeaderSlug);
 
@@ -99,9 +104,12 @@ export default class BusinessPartnerDetail extends Controller {
       return;
     }
     const oObject: BPAddress = objectOrUndefined;
-    const path = (this.getView()?.getModel() as ODataModel).createKey("/BPAddressSet", {
-      Partner: window.decodeURIComponent(oObject.Partner)
-    });
+    const path = (this.getView()?.getModel() as ODataModel).createKey(
+      "/BPAddressSet",
+      {
+        Partner: window.decodeURIComponent(oObject.Partner),
+      }
+    );
     this.getView()?.bindElement({
       path: path,
       parameters: {
@@ -111,8 +119,14 @@ export default class BusinessPartnerDetail extends Controller {
   }
   private handleTypeMissmatch(event: FileUploader$TypeMissmatchEvent) {
     const fileTypes = event.getSource().getFileType();
-    const supportedFileTypes = fileTypes.map((fileType)=>"*." + fileType).join(", ");
-    MessageToast.show(`Filetype *." ${event.getParameter("fileType")} is not supported. Choose one of the following types: ${supportedFileTypes}`);
+    const supportedFileTypes = fileTypes
+      .map((fileType) => "*." + fileType)
+      .join(", ");
+    MessageToast.show(
+      `Filetype *." ${event.getParameter(
+        "fileType"
+      )} is not supported. Choose one of the following types: ${supportedFileTypes}`
+    );
   }
   private onFileSizeExceed(event: FileUploader$FileSizeExceedEvent) {
     const fileSize = event.getSource().getMaximumFileSize();
@@ -135,7 +149,7 @@ export default class BusinessPartnerDetail extends Controller {
   }
   private onUploadChange(event: FileUploader$ChangeEvent) {
     const viewModel = this.getView()?.getModel("view") as JSONModel;
-    viewModel.setProperty("/image","");
+    viewModel.setProperty("/image", "");
     const files = event?.getParameter("files");
     if (files) {
       const file = files[0] as Blob;
