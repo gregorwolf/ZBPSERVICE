@@ -36,6 +36,7 @@
                             fileType="jpeg,jpg,png,heic,pdf"
                             mimeType="image/jpeg,image/jpg,image/png,*/*,.heic"
                             sameFilenameAllowed="true"
+                            useMultipart="false"
                             change=".onUploadChange"
                             uploadStart=".onBeforeUploadStarts"
                             typeMissmatch=".handleTypeMissmatch"
