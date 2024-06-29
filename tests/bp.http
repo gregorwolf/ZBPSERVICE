@@ -24,7 +24,7 @@ Accept: application/json
 ###
 # @name readBPAttachments
 GET {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/to_Attachments
-  ?$format=json
+Accept: application/json
 Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
 ###
 @mediaSrc={{readBPAttachments.response.body.d.results[0].__metadata.media_src}}
@@ -62,6 +62,26 @@ Content-Type: text/plain
 Slug: Test.txt
 
 X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
+### Upload Excel File
+POST {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/to_Attachments
+Authorization: Basic {{$dotenv username}}:{{$dotenv password}}
+X-CSRF-Token: {{csrf}}
+Accept-Language: en
+Accept: application/json
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+Slug: Test.xlsx
+
+< ./Test.xlsx
+### Upload PDF File
+POST {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{{bpID}}')/to_Attachments
+Authorization: Basic {{$dotenv username}}:{{$dotenv password}}
+X-CSRF-Token: {{csrf}}
+Accept-Language: en
+Accept: application/json
+Content-Type: application/pdf
+Slug: Test.pdf
+
+< ./Test.pdf
 ###
 DELETE  {{uri}}
 X-CSRF-Token: {{csrf}}
