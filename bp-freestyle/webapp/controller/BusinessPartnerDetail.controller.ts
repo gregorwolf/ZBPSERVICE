@@ -13,7 +13,7 @@ import FileUploader, {
 } from "sap/ui/unified/FileUploader";
 import FileUploaderParameter from "sap/ui/unified/FileUploaderParameter";
 import MessageToast from "sap/m/MessageToast";
-import Image from "sap/m/Image";
+import Table from "sap/m/Table";
 /**
  * @namespace csw.bpfreestyle.controller
  */
@@ -103,6 +103,8 @@ export default class BusinessPartnerDetail extends Controller {
     const viewModel = this.viewModel as JSONModel;
     viewModel.setProperty("/onUploadPictureVisible", false);
     viewModel.setProperty("/image", "");
+    const attachmentTable = this.byId("to_Attachments") as Table;
+    attachmentTable.getBinding("items")?.refresh();
     this.getView()?.setBusy(false);
   }
   private onUploadChange(event: FileUploader$ChangeEvent) {
