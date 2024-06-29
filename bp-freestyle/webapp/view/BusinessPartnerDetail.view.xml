@@ -42,12 +42,7 @@
                             typeMissmatch=".handleTypeMissmatch"
                             fileSizeExceed=".onFileSizeExceed"
                             uploadComplete=".onUploadComplete"></unified:FileUploader>
-                        <Image width="200px" id="picPreviewFileUpload" src="{view>/image}"></Image>
-                        <!-- <Button id="onTakePicture" icon="sap-icon://camera"
-                            press="onTakePicture"></Button>
-                        <html:input id="file" type="file" accept="image/*" capture="camera"
-                            style="visibility: hidden" />
-                        <Image width="200px" id="picPreview"></Image> -->
+                        <Image width="200px" id="picDownloadFileUpload" src="{view>/image}"></Image>
                         <Button id="onUploadPicture" icon="sap-icon://upload"
                             visible="{= %{view>/onUploadPictureVisible} }"
                             press="onUploadPicture"></Button>
@@ -64,12 +59,23 @@
                     <Column id="FilenameColumn">
                         <Text id="FilenameHeader" text="Filename" />
                     </Column>
+                    <Column id="DownloadColumn">
+                        <Text id="DownloadHeader" text="Download" />
+                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem id="columnListItem">
                         <cells>
                             <Text id="DocId" text="{DocId}" />
                             <Text id="Filename" text="{Filename}" />
+                            <Link id="DownloadLink"
+                                href="{= ${__metadata/media_src}}"
+                                text="Download"></Link>
+                            <!-- 
+                            <Button id="DownloadImage" icon="sap-icon://detail-view"
+                                visible="{= ${Mimetype} === 'image/jpeg' }"
+                                press="onDownloadImage"></Button>
+                            -->
                         </cells>
                     </ColumnListItem>
                 </items>
