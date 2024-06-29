@@ -13,17 +13,19 @@ import FileUploader, {
 } from "sap/ui/unified/FileUploader";
 import FileUploaderParameter from "sap/ui/unified/FileUploaderParameter";
 import MessageToast from "sap/m/MessageToast";
+import Image from "sap/m/Image";
 /**
  * @namespace csw.bpfreestyle.controller
  */
 export default class BusinessPartnerDetail extends Controller {
+  private viewModel: JSONModel | undefined;
   /*eslint-disable @typescript-eslint/no-empty-function*/
   public onInit(): void {
     const viewSettings = {
       onUploadPictureVisible: false,
     };
-    const viewModel = new JSONModel(viewSettings);
-    this.getView()?.setModel(viewModel, "view");
+    this.viewModel = new JSONModel(viewSettings);
+    this.getView()?.setModel(this.viewModel, "view");
 
     const oOC = this.getOwnerComponent() as UIComponent;
     const oRouter = oOC.getRouter();
@@ -55,45 +57,6 @@ export default class BusinessPartnerDetail extends Controller {
     fileuploader.upload();
     // eslint-disable-next-line no-console
     console.log("Upload Picture");
-  }
-
-  public onTakePicture(): void {
-    // eslint-disable-next-line no-console
-    console.log("Take Picture");
-    var fileId = this.createId("file");
-    var oPicPreviewID = this.createId("picPreview");
-    const viewModel = this.getView()?.getModel("view") as JSONModel;
-
-    if (oPicPreviewID && fileId) {
-      //trigger click event for the input field to open camera
-      var image = document.getElementById(fileId);
-      if (image !== null) {
-        image.addEventListener("change", function () {
-          //check if there is an image
-          const file = this as HTMLInputElement;
-          if (oPicPreviewID && file.files && file.files[0]) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            var previewPic = document.getElementById(oPicPreviewID) as any;
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              if (previewPic) {
-                if (e.target?.result !== null) {
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                  previewPic.src = e.target?.result;
-                  // pictureObj = e.target.result;
-                  viewModel.setProperty("/onUploadPictureVisible", true);
-                }
-              }
-            };
-
-            reader.readAsDataURL(file.files[0]);
-          }
-        });
-        image.click();
-      }
-    } else {
-      // console.error("IDs are not defined");
-    }
   }
 
   private _onRouteMatched(event: Route$PatternMatchedEvent): void {
@@ -134,21 +97,16 @@ export default class BusinessPartnerDetail extends Controller {
   }
   private onBeforeUploadStarts(event: FileUploader$UploadStartEvent) {
     const fileUpload = event.getSource();
-    // fileUpload.removeHeaderParameter("slug");
-    // Header Slug
-    // var customerHeaderSlug = new FileUploaderParameter({
-    // 	name: "slug",
-    // 	value: oEvent.getParameter("fileName")
-    // });
-    // fileUpload.addHeaderParameter(customerHeaderSlug);
-
     this.getView()?.setBusy(true);
   }
   private onUploadComplete() {
+    const viewModel = this.viewModel as JSONModel;
+    viewModel.setProperty("/onUploadPictureVisible", false);
+    viewModel.setProperty("/image", "");
     this.getView()?.setBusy(false);
   }
   private onUploadChange(event: FileUploader$ChangeEvent) {
-    const viewModel = this.getView()?.getModel("view") as JSONModel;
+    const viewModel = this.viewModel as JSONModel;
     viewModel.setProperty("/image", "");
     const files = event?.getParameter("files");
     if (files) {
