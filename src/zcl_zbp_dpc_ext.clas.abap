@@ -327,6 +327,9 @@ CLASS zcl_zbp_dpc_ext IMPLEMENTATION.
       ENDTRY.
       IF document_data IS NOT INITIAL.
         CASE document_data-obj_type.
+          WHEN 'XLS'.
+            ls_stream-mime_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'.
+            extension = '.xlsx'.
           WHEN 'PDF'.
             ls_stream-mime_type = 'application/pdf'.
             extension = '.pdf'.
