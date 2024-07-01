@@ -10,8 +10,12 @@
                 xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
                 xmlns:smartTable="sap.ui.comp.smarttable">
                 <smartFilterBar:SmartFilterBar
-                    id="smartFilterBar"
-                    entitySet="BPAddressSet">
+                    id="BPAddressSetFilterBar"
+                    entitySet="BPAddressSet"
+                    enableBasicSearch="false"
+                    showClearOnFB="true"
+                    liveMode="false"
+                    persistencyKey="BPAddressSetFilterBarKey">
                 </smartFilterBar:SmartFilterBar>
                 <smartTable:SmartTable
                     id="smartTable_ResponsiveTable"
