@@ -88,3 +88,8 @@ DELETE  {{uri}}
 X-CSRF-Token: {{csrf}}
 Accept: application/json
 Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
+
+### Function Import
+GET {{$dotenv backend_url}}/sap/opu/odata/sap/ZBP_SRV/GetBP?Partner='{{bpID}}'
+Accept: application/json
+Authorization: Basic {{$dotenv backend_username}}:{{$dotenv backend_password}}
