@@ -18,7 +18,7 @@ server:
         backend:
           - path: /sap
             url: https://a4h.computerservice-wolf.com:50001
-            client: '001'
+            client: "001"
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -46,3 +46,9 @@ builder:
         debug: true
         transformModulesToUI5:
           overridesToOverride: true
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: csw.bplrop
+        additionalFiles:
+          - webapp/xs-app.json
