@@ -78,7 +78,7 @@
         "runtimeExecutable": "npx.cmd"
       },
       "runtimeArgs": ["fiori", "run"],
-      "args": ["--open", "test/flpSandbox.html#cswbpfreestyle-display"],
+      "args": ["--open", "test/flpSandbox.html#cswbpfreestylets-display"],
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
       "outputCapture": "std",
@@ -102,7 +102,7 @@
         "--config",
         "./ui5-mock.yaml",
         "--open",
-        "test/flpSandbox.html#cswbpfreestyle-display"
+        "test/flpSandbox.html#cswbpfreestylets-display"
       ],
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
@@ -126,7 +126,7 @@
         "--config",
         "./ui5-local.yaml",
         "--open",
-        "test/flpSandbox.html#cswbpfreestyle-display"
+        "test/flpSandbox.html#cswbpfreestylets-display"
       ],
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",

@@ -1,4 +1,4 @@
-<mvc:View controllerName="csw.bpfreestyle.controller.BusinessPartnerDetail"
+<mvc:View controllerName="csw.bpfreestylets.controller.BusinessPartnerDetail"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns:smartForm="sap.ui.comp.smartform"
     xmlns:smartField="sap.ui.comp.smartfield"

@@ -4,7 +4,7 @@ import Event from "sap/ui/base/Event";
 import UIComponent from "sap/ui/core/UIComponent";
 import { BPAddress } from "../../gen/ZbpSrvModel";
 /**
- * @namespace csw.bpfreestyle.controller
+ * @namespace csw.bpfreestylets.controller
  */
 export default class BusinessPartners extends Controller {
   /*eslint-disable @typescript-eslint/no-empty-function*/

@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: csw.bpfreestyle
+  name: csw.bpfreestylets
 type: application
 server:
   customMiddleware:
@@ -18,7 +18,7 @@ server:
         backend:
           - path: /sap
             url: https://a4h.computerservice-wolf.com:50001
-            client: '001'
+            client: "001"
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

@@ -1,7 +1,7 @@
 import Controller from "sap/ui/core/mvc/Controller";
 
 /**
- * @namespace csw.bpfreestyle.controller
+ * @namespace csw.bpfreestylets.controller
  */
 export default class App extends Controller {
   /*eslint-disable @typescript-eslint/no-empty-function*/

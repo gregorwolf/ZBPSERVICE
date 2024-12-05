@@ -11,22 +11,14 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "csw/bpfreestyle/*": [
-        "./webapp/*"
-      ],
-      "unit/*": [
-        "./webapp/test/unit/*"
-      ],
-      "integration/*": [
-        "./webapp/test/integration/*"
-      ]
+      "csw/bpfreestylets/*": ["./webapp/*"],
+      "unit/*": ["./webapp/test/unit/*"],
+      "integration/*": ["./webapp/test/integration/*"]
     },
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@sapui5/ts-types-esm"
     ]
   },
-  "include": [
-    "./webapp/**/*"
-  ]
+  "include": ["./webapp/**/*"]
 }

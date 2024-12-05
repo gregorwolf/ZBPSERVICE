@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: csw.bpfreestyle
+  name: csw.bpfreestylets
 type: application
 framework:
   name: SAPUI5
@@ -40,7 +40,7 @@ server:
         backend:
           - path: /sap
             url: https://a4h.computerservice-wolf.com:50001
-            client: '001'
+            client: "001"
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
@@ -54,7 +54,7 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: csw.bpfreestyle
+        component: csw.bpfreestylets
         ui5Theme: sap_horizon
 builder:
   customTasks:

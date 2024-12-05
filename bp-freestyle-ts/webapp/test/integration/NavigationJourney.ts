@@ -10,23 +10,22 @@ QUnit.module("Navigation Journey");
 const onTheAppPage = new AppPage();
 const onTheViewPage = new ViewPage();
 Opa5.extendConfig({
-	viewNamespace: "csw.bpfreestyle.view.",
-	autoWait: true
+  viewNamespace: "csw.bpfreestylets.view.",
+  autoWait: true,
 });
 
 opaTest("Should see the initial page of the app", function () {
-	// Arrangements
-	onTheAppPage.iStartMyUIComponent({
-		componentConfig: {
-			name: "csw.bpfreestyle"
-		}
-	});
+  // Arrangements
+  onTheAppPage.iStartMyUIComponent({
+    componentConfig: {
+      name: "csw.bpfreestylets",
+    },
+  });
 
-	// Assertions
-	onTheAppPage.iShouldSeeTheApp();
-	onTheViewPage.iShouldSeeThePageView();
+  // Assertions
+  onTheAppPage.iShouldSeeTheApp();
+  onTheViewPage.iShouldSeeThePageView();
 
-
-	//Cleanup
-	onTheAppPage.iTeardownMyApp();
+  //Cleanup
+  onTheAppPage.iTeardownMyApp();
 });

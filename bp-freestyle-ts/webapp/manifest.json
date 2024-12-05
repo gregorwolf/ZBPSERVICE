@@ -1,7 +1,7 @@
 {
   "_version": "1.48.0",
   "sap.app": {
-    "id": "csw.bpfreestyle",
+    "id": "csw.bpfreestylets",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -87,7 +87,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "csw.bpfreestyle.i18n.i18n"
+          "bundleName": "csw.bpfreestylets.i18n.i18n"
         }
       },
       "": {
@@ -108,7 +108,7 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "csw.bpfreestyle.view",
+        "viewPath": "csw.bpfreestylets.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
@@ -143,7 +143,7 @@
       }
     },
     "rootView": {
-      "viewName": "csw.bpfreestyle.view.App",
+      "viewName": "csw.bpfreestylets.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

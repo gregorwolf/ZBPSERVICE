@@ -2,7 +2,7 @@ import BaseComponent from "sap/ui/core/UIComponent";
 import { createDeviceModel } from "./model/models";
 
 /**
- * @namespace csw.bpfreestyle
+ * @namespace csw.bpfreestylets
  */
 export default class Component extends BaseComponent {
   public static metadata = {

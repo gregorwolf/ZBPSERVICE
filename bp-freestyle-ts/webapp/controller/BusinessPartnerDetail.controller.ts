@@ -15,7 +15,7 @@ import FileUploaderParameter from "sap/ui/unified/FileUploaderParameter";
 import MessageToast from "sap/m/MessageToast";
 import Table from "sap/m/Table";
 /**
- * @namespace csw.bpfreestyle.controller
+ * @namespace csw.bpfreestylets.controller
  */
 export default class BusinessPartnerDetail extends Controller {
   private viewModel: JSONModel | undefined;
