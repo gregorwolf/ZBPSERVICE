@@ -5,7 +5,7 @@ The Business Partner OData service is a simple OData service that provides a que
 ## Content
 
 - bp-cap - CAP implementation of the Business Partner OData service
-- bp-freestyle - SAPUI5 Freestyle implementation of the Business Partner Application
+- bp-freestyle-ts - SAPUI5 Freestyle implementation of the Business Partner Application using TypeScript
 - bp-lrop - SAP Fiori Elements List Report Object Page implementation of the Business Partner Application
 - src - ABAP implementation of the Business Partner OData service. Can be installed in an ABAP system using [abapGit](https://abapgit.org)
 - tests - REST Client tests for the Business Partner OData service

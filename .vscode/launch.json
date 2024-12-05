@@ -69,11 +69,11 @@
       }
     },
     {
-      "name": "Start bp-freestyle",
+      "name": "Start bp-freestyle-ts",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "npx",
-      "cwd": "${workspaceFolder}/bp-freestyle",
+      "cwd": "${workspaceFolder}/bp-freestyle-ts",
       "windows": {
         "runtimeExecutable": "npx.cmd"
       },
@@ -89,10 +89,10 @@
       }
     },
     {
-      "name": "Start bp-freestyle Mock",
+      "name": "Start bp-freestyle-ts Mock",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}/bp-freestyle",
+      "cwd": "${workspaceFolder}/bp-freestyle-ts",
       "runtimeExecutable": "npx",
       "windows": {
         "runtimeExecutable": "npx.cmd"
@@ -113,10 +113,10 @@
       }
     },
     {
-      "name": "Start bp-freestyle Local",
+      "name": "Start bp-freestyle-ts Local",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}/bp-freestyle",
+      "cwd": "${workspaceFolder}/bp-freestyle-ts",
       "runtimeExecutable": "npx",
       "windows": {
         "runtimeExecutable": "npx.cmd"

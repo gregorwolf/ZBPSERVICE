@@ -8,7 +8,7 @@
 |**Template Used**<br>simple|
 |**Service Type**<br>SAP System (ABAP On Premise)|
 |**Service URL**<br>https://a4h.computerservice-wolf.com:50001/sap/opu/odata/sap/ZBP_SRV
-|**Module Name**<br>bp-freestyle|
+|**Module Name**<br>bp-freestyle-ts|
 |**Application Title**<br>Business Partners|
 |**Namespace**<br>csw|
 |**UI5 Theme**<br>sap_horizon|
@@ -17,7 +17,7 @@
 |**Enable TypeScript**<br>True|
 |**Add Eslint configuration**<br>True, see https://www.npmjs.com/package/eslint-plugin-fiori-custom for the eslint rules.|
 
-## bp-freestyle
+## bp-freestyle-ts
 
 An SAP Fiori application.
 
@@ -38,5 +38,3 @@ An SAP Fiori application.
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
-
-
