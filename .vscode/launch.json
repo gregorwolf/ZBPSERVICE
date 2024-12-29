@@ -135,6 +135,83 @@
       "env": {
         "FIORI_TOOLS_URL_PARAMS": "sap-client=001&sap-ui-xx-viewCache=false"
       }
+    },
+    {
+        "name": "Start bp-freestyle",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/bp-freestyle",
+        "runtimeExecutable": "npx",
+        "windows": {
+            "runtimeExecutable": "npx.cmd"
+        },
+        "runtimeArgs": [
+            "fiori",
+            "run"
+        ],
+        "args": [
+            "--open",
+            "test/flpSandbox.html#cswbpfreestyle-display"
+        ],
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "outputCapture": "std",
+        "env": {
+            "DEBUG": "--inspect",
+            "FIORI_TOOLS_URL_PARAMS": "sap-client=001&sap-ui-xx-viewCache=false"
+        }
+    },
+    {
+        "name": "Start bp-freestyle Local",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/bp-freestyle",
+        "runtimeExecutable": "npx",
+        "windows": {
+            "runtimeExecutable": "npx.cmd"
+        },
+        "runtimeArgs": [
+            "fiori",
+            "run"
+        ],
+        "args": [
+            "--config",
+            "./ui5-local.yaml",
+            "--open",
+            "test/flpSandbox.html#cswbpfreestyle-display"
+        ],
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "outputCapture": "std",
+        "env": {
+            "FIORI_TOOLS_URL_PARAMS": "sap-client=001&sap-ui-xx-viewCache=false"
+        }
+    },
+    {
+        "name": "Start bp-freestyle Mock",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/bp-freestyle",
+        "runtimeExecutable": "npx",
+        "windows": {
+            "runtimeExecutable": "npx.cmd"
+        },
+        "runtimeArgs": [
+            "fiori",
+            "run"
+        ],
+        "args": [
+            "--config",
+            "./ui5-mock.yaml",
+            "--open",
+            "test/flpSandbox.html#cswbpfreestyle-display"
+        ],
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "outputCapture": "std",
+        "env": {
+            "FIORI_TOOLS_URL_PARAMS": "sap-client=001&sap-ui-xx-viewCache=false"
+        }
     }
   ],
   "compounds": []
