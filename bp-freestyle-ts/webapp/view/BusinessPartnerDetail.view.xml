@@ -6,7 +6,7 @@
     xmlns:unified="sap.ui.unified"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>BusinessPartnerDetailTitle}">
+    <Page id="bpDetailPage" title="{i18n>BusinessPartnerDetailTitle}">
         <content>
             <smartForm:SmartForm
                 id="smartForm"
