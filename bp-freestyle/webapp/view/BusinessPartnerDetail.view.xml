@@ -1,0 +1,85 @@
+<mvc:View controllerName="csw.bpfreestyle.controller.BusinessPartnerDetail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:unified="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m">
+    <Page id="bpDetailPage" title="{i18n>BusinessPartnerDetailTitle}">
+        <content>
+            <smartForm:SmartForm
+                id="smartForm"
+                editTogglable="true"
+                title="{Name}"
+                flexEnabled="false">
+                <smartForm:Group id="Details" title="Details">
+                    <smartForm:GroupElement id="PartnerID">
+                        <smartField:SmartField id="PartnerIDField" value="{Partner}" />
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+                <smartForm:Group id="Address" title="Address">
+                    <smartForm:GroupElement id="Country">
+                        <smartField:SmartField id="CountryField" value="{Country}" />
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+                <smartForm:Group id="AddImage" title="Add Image">
+                    <smartForm:GroupElement id="Image">
+                        <!-- fileType="jpg,png,jpeg" -->
+                        <unified:FileUploader id="fileuploader"
+                            sendXHR="true"
+                            iconOnly="true"
+                            width="100%"
+                            buttonOnly="true"
+                            icon="sap-icon://camera"
+                            uploadUrl="/sap/opu/odata/sap/ZBP_SRV/BPAddressSet('{Partner}')/to_Attachments"
+                            fileType="jpeg,jpg,png,heic,pdf"
+                            mimeType="image/jpeg,image/jpg,image/png,*/*,.heic"
+                            sameFilenameAllowed="true"
+                            useMultipart="false"
+                            change=".onUploadChange"
+                            uploadStart=".onBeforeUploadStarts"
+                            typeMissmatch=".handleTypeMissmatch"
+                            fileSizeExceed=".onFileSizeExceed"
+                            uploadComplete=".onUploadComplete"></unified:FileUploader>
+                        <Image width="200px" id="picDownloadFileUpload" src="{view>/image}"></Image>
+                        <Button id="onUploadPicture" icon="sap-icon://upload"
+                            visible="{= %{view>/onUploadPictureVisible} }"
+                            press="onUploadPicture"></Button>
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+            </smartForm:SmartForm>
+            <Table id="to_Attachments"
+                items="{to_Attachments}"
+            >
+                <columns>
+                    <Column id="DocIdColumn">
+                        <Text id="DocIdHeader" text="DocId" />
+                    </Column>
+                    <Column id="FilenameColumn">
+                        <Text id="FilenameHeader" text="Filename" />
+                    </Column>
+                    <Column id="DownloadColumn">
+                        <Text id="DownloadHeader" text="Download" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="columnListItem">
+                        <cells>
+                            <Text id="DocId" text="{DocId}" />
+                            <Text id="Filename" text="{Filename}" />
+                            <Link id="DownloadLink"
+                                href="{= ${__metadata/media_src}}"
+                                text="Download"></Link>
+                            <!-- 
+                            <Button id="DownloadImage" icon="sap-icon://detail-view"
+                                visible="{= ${Mimetype} === 'image/jpeg' }"
+                                press="onDownloadImage"></Button>
+                            -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

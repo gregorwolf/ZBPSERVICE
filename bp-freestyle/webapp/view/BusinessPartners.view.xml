@@ -1,0 +1,38 @@
+<mvc:View controllerName="csw.bpfreestyle.controller.BusinessPartners"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="bppage" title="{i18n>title}">
+        <content>
+            <mvc:View
+                id="smartTableView"
+                xmlns="sap.m"
+                xmlns:mvc="sap.ui.core.mvc"
+                xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+                xmlns:smartTable="sap.ui.comp.smarttable">
+                <smartFilterBar:SmartFilterBar
+                    id="BPAddressSetFilterBar"
+                    entitySet="BPAddressSet"
+                    enableBasicSearch="false"
+                    showClearOnFB="true"
+                    liveMode="false"
+                    persistencyKey="BPAddressSetFilterBarKey">
+                </smartFilterBar:SmartFilterBar>
+                <smartTable:SmartTable
+                    id="smartTable_ResponsiveTable"
+                    smartFilterId="smartFilterBar"
+                    tableType="ResponsiveTable"
+                    editable="false"
+                    entitySet="BPAddressSet"
+                    useVariantManagement="false"
+                    useTablePersonalisation="false"
+                    header="Business Partner"
+                    showRowCount="true"
+                    enableExport="true"
+                    enableAutoBinding="true">
+                    <Table id="smartTable" selectionChange="onSelectionChange"
+                        mode="SingleSelectMaster"></Table>
+                </smartTable:SmartTable>
+            </mvc:View>
+        </content>
+    </Page>
+</mvc:View>

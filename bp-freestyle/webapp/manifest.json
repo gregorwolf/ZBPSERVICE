@@ -20,9 +20,16 @@
         "uri": "/sap/opu/odata/sap/ZBP_SRV/",
         "type": "OData",
         "settings": {
-          "annotations": [],
+          "annotations": ["annotation"],
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
         }
       }
     },
@@ -60,7 +67,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.108.22",
+      "minUI5Version": "1.108.32",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {}
@@ -102,18 +109,30 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
+          "name": "RouteBusinessPartners",
           "pattern": ":?query:",
-          "target": ["TargetApp"]
+          "target": ["TargetBusinessPartners"]
+        },
+        {
+          "name": "RouteBusinessPartnerDetail",
+          "pattern": "Details/{Partner}",
+          "target": ["TargetBusinessPartnerDetail"]
         }
       ],
       "targets": {
-        "TargetApp": {
+        "TargetBusinessPartners": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "App",
-          "viewName": "App"
+          "viewId": "BusinessPartners",
+          "viewName": "BusinessPartners"
+        },
+        "TargetBusinessPartnerDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "BusinessPartnerDetail",
+          "viewName": "BusinessPartnerDetail"
         }
       }
     },
