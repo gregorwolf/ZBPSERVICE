@@ -15,11 +15,11 @@ builder:
       configuration:
         target:
           url: https://a4h.computerservice-wolf.com:50001
-          client: '001'
+          client: "001"
         app:
           name: ZBPFSJS
           description: Business Partner JavaScript
           package: $TMP
-          transport: ''
+          transport: ""
         exclude:
           - /test/

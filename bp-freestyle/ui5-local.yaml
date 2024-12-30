@@ -32,7 +32,7 @@ server:
         backend:
           - path: /sap
             url: https://a4h.computerservice-wolf.com:50001
-            client: '001'
+            client: "001"
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
