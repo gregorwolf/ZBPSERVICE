@@ -23,13 +23,16 @@
     "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-client=001&sap-ui-xx-viewCache=false#project1-tile\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
     "start-mock": "fiori run --config ./ui5-mock.yaml --open \"test/flpSandbox.html?sap-client=001&sap-ui-xx-viewCache=false#project1-tile\"",
-    "deploy": "fiori cfDeploy",
+    "deploy:cf": "fiori cfDeploy",
+    "deploy:abap": "npm run build && fiori deploy --config ui5-deploy-abap.yaml && rimraf archive.zip",
     "deploy-config": "fiori add deploy-config",
     "start-noflp": "fiori run --open \"index.html?sap-client=001&sap-ui-xx-viewCache=false\"",
     "start-variants-management": "fiori run --open \"preview.html?&sap-client=001&sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
     "build:cf": "ui5 build preload --clean-dest --config ui5-deploy.yaml --include-task=generateCachebusterInfo",
     "build:mta": "rimraf resources mta_archives && mbt build",
-    "undeploy": "cf undeploy project1 --delete-services --delete-service-keys --delete-service-brokers"
+    "undeploy:cf": "cf undeploy project1 --delete-services --delete-service-keys --delete-service-brokers",
+    "undeploy:abap": "npm run build && fiori undeploy --config ui5-deploy.yaml",
+    "deploy-test:abap": "npm run build && fiori deploy --config ui5-deploy.yaml --testMode true"
   },
   "sapuxLayer": "CUSTOMER_BASE",
   "sapux": true
