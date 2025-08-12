@@ -1,0 +1,20 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Business Partner Changed",
+    "originalLanguage": "en"
+  },
+  "producerNamespace": "s4.beh",
+  "producer": "P019B843169B79180E12EA742D7155076",
+  "producerVersion": "0001",
+  "boName": "zbusinesspartner",
+  "boOperation": "created",
+  "producerType": "s4.beh.zbusinesspartner.created.v*",
+  "events": [
+    {
+      "eventVersion": "0001",
+      "entityName": "ZC_BUSINESSPARTNEREVENT",
+      "entityEventName": "CREATED"
+    }
+  ]
+}

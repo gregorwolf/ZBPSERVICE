@@ -1,0 +1,15 @@
+managed with unmanaged save implementation in class zbp_c_businesspartnerevent unique;
+
+with privileged mode disabling NoCheckWhenPrivileged;
+
+define own authorization context { }
+define authorization context NoCheckWhenPrivileged { }
+
+define behavior for ZC_BusinessPartnerEvent alias ZBDEV_BusinessPartnerEvent
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  event created parameter ZD_BusinessPartner;
+  event changed parameter ZD_BusinessPartner;
+}
